@@ -1,0 +1,17 @@
+<table border="1" cellpadding="5" cellspacing="5">
+  <thead>
+    <th>№</th>
+    <th>Name</th>
+    <th>Number</th>
+    <th>Rating</th>
+    <th>Date</th>
+  </thead>
+
+  {% for item in items %}
+    <tr>
+      {% for d in item %}
+       <td>{{ d }}</td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+</table> 
