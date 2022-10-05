@@ -16,4 +16,5 @@ Docker-compose для стандартного веб-приложения:
   $ docker system prune
   
 Тестовое веб-приложение доступно по адресу: http://localhost:5555
+
 Веб-приложение pgAdmin доступно по адресу: http://localhost:5050
