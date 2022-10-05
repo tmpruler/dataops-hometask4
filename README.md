@@ -1,3 +1,19 @@
-# dataops-hometask4
-Creating and Deploying a Web Application
-Using Docker Compose, PostgreSQL, pgAdmin
+# dataops-hometask4 - Создание docker-compose для стандартного веб-приложения
+В результате выполнения ДЗ создан docker-compose для стандартного веб-приложения.
+
+Docker-compose для стандартного веб-приложения:
+ - в качестве базы данных используется БД postgres;
+ - в качестве админки к БД используется pgAdmin;
+ - веб-приложение написано на фреймворке flask.
+
+Для запуска контейнеров необходимо использовать команду:
+  $ docker-compose up -d
+
+Для остановки и удаления контейнеров из ОЗУ, а также сети необходимо использовать команду:
+  $ docker-compose down
+
+Для полной очистки необходимо использовать команду:
+  $ docker system prune
+  
+Тестовое веб-приложение доступно по адресу: http://localhost:5555
+Веб-приложение pgAdmin доступно по адресу: http://localhost:5050
