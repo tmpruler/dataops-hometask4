@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
   flask:
     container_name: flask
@@ -10,15 +10,18 @@ services:
       - postgres
     environment:
         DB_USERNAME: test
-        DB_PASSWORD: qweqwe][p][p
-
+        DB_PASSWORD_FILE: /run/secrets/db_user_password
+    secrets:
+      - db_user_password
   postgres:
     environment:
       DATABASE_PORT: 5432
       DATABASE_DIALECT: postgresql
       POSTGRES_DB: flaskdb
       POSTGRES_USER: test
-      POSTGRES_PASSWORD: qweqwe][p][p
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_user_password
+    secrets:
+      - db_user_password
     container_name: postgres
     image: postgres:14
     volumes:
@@ -30,14 +33,21 @@ services:
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: tmpruler@ya.ru
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/pgadmin_default_password
       PGADMIN_CONFIG_SERVER_MODE: 'False'
+    secrets:
+      - pgadmin_default_password
     volumes:
        - pgadmin:/var/lib/pgadmin
     ports:
       - "${PGADMIN_PORT:-5050}:80"
     depends_on:
       - postgres
+secrets:
+  db_user_password:
+    file: ./secrets/db_user_password.txt
+  pgadmin_default_password:
+    file: ./secrets/pgadmin_default_password.txt
 volumes:
     flaskdb:
       driver: local

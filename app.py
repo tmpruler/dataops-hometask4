@@ -5,9 +5,9 @@ from flask import Flask, render_template
 app = Flask(__name__,template_folder='templates')
 
 def get_db_connection():
-    conn = psycopg2.connect(host='postgres', dbname='flaskdb', user=os.environ['DB_USERNAME'], password=os.environ['DB_PASSWORD'])
+    user_password = open(os.environ['DB_PASSWORD_FILE'], 'r').read()
+    conn = psycopg2.connect(host='postgres', dbname='flaskdb', user=os.environ['DB_USERNAME'], password=user_password)
     return conn
-
 
 @app.route('/')
 def index():
